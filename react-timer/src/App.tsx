@@ -1,15 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
+
 import './App.css';
 import Timer from "./Timer";
+import AudioSelect from './AudioSelect';
 
 function App() {
   const time = new Date()
+  // 10分(600)のタイマーが始まるところからかいし
   time.setSeconds(time.getSeconds() + 600);
   return (
     <div className="App">
       <header className="App-header">
-        <Timer expiryTimestamp={time as unknown as number} />
+        <AudioSelect/>
+        <Timer expiryTimestamp={time as Date} />
       </header>
     </div>
   );

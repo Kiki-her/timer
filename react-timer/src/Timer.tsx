@@ -1,7 +1,7 @@
 import React from "react";
 import { useTimer } from "react-timer-hook";
 
-export default function Timer({ expiryTimestamp }: { expiryTimestamp: number }) {
+export default function Timer({ expiryTimestamp }: { expiryTimestamp: Date }) {
   const {
     seconds,
     minutes,
@@ -14,9 +14,11 @@ export default function Timer({ expiryTimestamp }: { expiryTimestamp: number }) 
     restart,
   } = useTimer({
     expiryTimestamp,
+    autoStart: false,
     onExpire: () => console.warn("onExpire called"),
   });
 
+  console.log(days, hours, minutes, seconds, "TIMER");
   return (
     <div style={{ textAlign: "center" }}>
       <h1>react-timer-hook </h1>
@@ -34,7 +36,7 @@ export default function Timer({ expiryTimestamp }: { expiryTimestamp: number }) 
           // Restarts to 5 minutes timer
           const time = new Date();
           time.setSeconds(time.getSeconds() + 300);
-          restart(time as unknown as number);
+          restart(time as unknown as Date);
         }}
       >
         Restart
